@@ -1,16 +1,19 @@
--- Insert Roles
+-- Insert Roles (idempotent)
 INSERT INTO roles (name) VALUES
 ('STUDENT'),
 ('VERIFIER'),
 ('APPROVER'),
 ('FINANCE'),
-('ADMIN');
+('ADMIN')
+ON CONFLICT (name) DO NOTHING;
 
--- Sample User
+-- Insert Sample User (idempotent)
 INSERT INTO users (full_name, email, password_hash, role_id)
-VALUES (
+SELECT
     'Test Student',
     'student@test.com',
     'hashed_password_here',
-    1
-);
+    r.id
+FROM roles r
+WHERE r.name = 'STUDENT'
+ON CONFLICT (email) DO NOTHING;
