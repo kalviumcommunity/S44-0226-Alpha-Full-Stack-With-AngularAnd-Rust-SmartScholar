@@ -12,3 +12,9 @@
 - Created roles, users, and applications tables
 - Added seed data for testing
 - Started documenting database structure
+- Introduced ENUM type for application status
+- Enforced NOT NULL constraints on workflow fields
+- Made seed script idempotent using ON CONFLICT
+- Installed PostgreSQL locally and created smart_scholar database
+- Executed schema and seed scripts successfully
+- Verified tables and sample data in database
