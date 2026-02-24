@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+
+.navbar {
+  height: 60px;
+  background: var(--bg-secondary);
+  color: var(--text-main);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 25px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--blue-light);
+}
+
+.menu a {
+  color: var(--text-muted);
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.menu a:hover {
+  color: var(--blue-light);
+}

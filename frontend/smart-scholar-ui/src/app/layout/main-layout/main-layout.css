@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-main);
+}
+
+/* Center area */
+.layout-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Main content */
+.content {
+  flex: 1;
+  padding: 25px;
+  background: var(--bg-main);
+  overflow-y: auto;
+}
