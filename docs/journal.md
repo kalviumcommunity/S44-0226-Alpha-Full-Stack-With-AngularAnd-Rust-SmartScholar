@@ -31,3 +31,16 @@
 - Created `/health/db` endpoint for database monitoring
 - Improved startup error handling and Docker compatibility
 - Addressed automated code review feedback
+
+## Day 4
+
+- Initialized Angular frontend project with routing and CSS styling
+- Configured environment files for development and production
+- Set up base application structure using standalone components
+- Created layout components (Navbar, Sidebar, Footer, Main Layout)
+- Implemented responsive full-height dashboard layout
+- Applied dark and blue professional theme across the application
+- Cleanouted default Angular starter template
+- Improved global styling and layout consistency
+- Addressed frontend code review feedback
+- Pushed frontend setup and layout UI branches
