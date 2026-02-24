@@ -1,4 +1,5 @@
 use axum::{routing::get, Router};
+use axum::http::StatusCode;
 use dotenvy::dotenv;
 use sqlx::{PgPool, postgres::PgPoolOptions};
 use std::{env, net::SocketAddr};
@@ -15,13 +16,18 @@ async fn health_check() -> &'static str {
     "Smart Scholar API is running 🚀"
 }
 
-async fn db_health(state: axum::extract::State<AppState>) -> &'static str {
+async fn db_health(
+    state: axum::extract::State<AppState>,
+) -> (StatusCode, &'static str) {
     match sqlx::query("SELECT 1")
         .execute(&state.db)
         .await
     {
-        Ok(_) => "Database connection OK ✅",
-        Err(_) => "Database connection FAILED ❌",
+        Ok(_) => (StatusCode::OK, "Database connection OK ✅"),
+        Err(_) => (
+            StatusCode::SERVICE_UNAVAILABLE,
+            "Database connection FAILED ❌",
+        ),
     }
 }
 
@@ -44,14 +50,20 @@ async fn main() {
         .connect(&db_url)
         .await
     {
-        Ok(pool) => pool,
+        Ok(pool) => {
+            info!("Connected to PostgreSQL");
+            pool
+        }
         Err(e) => {
-            error!("Failed to connect to database: {}", e);
-            std::process::exit(1);
+            error!("Database connection failed at startup: {}", e);
+            error!("Starting server without active DB connection");
+
+            PgPoolOptions::new()
+                .max_connections(5)
+                .connect_lazy(&db_url)
+                .expect("Failed to create lazy DB pool")
         }
     };
-
-    info!("Connected to PostgreSQL");
 
     let state = AppState { db: pool };
 
