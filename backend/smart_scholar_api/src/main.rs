@@ -1,26 +1,38 @@
-use axum::{
-    routing::get,
-    Router,
-    response::IntoResponse,
-};
+use axum::{routing::get, Router};
+use std::{env, net::SocketAddr};
 use tokio::net::TcpListener;
+use tracing::{error, info};
+use tracing_subscriber;
 
-async fn health_check() -> impl IntoResponse {
+async fn health_check() -> &'static str {
     "Smart Scholar API is running 🚀"
 }
 
 #[tokio::main]
 async fn main() {
-    let app = Router::new()
-        .route("/health", get(health_check));
+    // Initialize structured logging
+    tracing_subscriber::fmt::init();
 
-    let listener = TcpListener::bind("127.0.0.1:8080")
-        .await
-        .expect("Failed to bind address");
+    // Read port from environment variable or default to 8080
+    let port = env::var("PORT").unwrap_or_else(|_| "8080".to_string());
+    let addr: SocketAddr = format!("0.0.0.0:{}", port)
+        .parse()
+        .expect("Invalid address format");
 
-    println!("Server running on http://127.0.0.1:8080");
+    let app = Router::new().route("/health", get(health_check));
 
-    axum::serve(listener, app)
-        .await
-        .expect("Server error");
+    let listener = match TcpListener::bind(addr).await {
+        Ok(listener) => listener,
+        Err(e) => {
+            error!("Failed to bind to address: {}", e);
+            std::process::exit(1);
+        }
+    };
+
+    info!("Server running on http://{}", addr);
+
+    if let Err(e) = axum::serve(listener, app).await {
+        error!("Server error: {}", e);
+        std::process::exit(1);
+    }
 }
