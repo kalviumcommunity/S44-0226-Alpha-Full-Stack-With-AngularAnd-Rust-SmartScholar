@@ -6,6 +6,8 @@ use std::{env, net::SocketAddr};
 use tokio::net::TcpListener;
 use tracing::{error, info};
 use tracing_subscriber;
+mod models;
+mod utils;
 
 #[derive(Clone)]
 struct AppState {
