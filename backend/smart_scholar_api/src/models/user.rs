@@ -5,6 +5,9 @@ pub struct User {
     pub id: i32,
     pub full_name: String,
     pub email: String,
+
+    #[serde(skip_serializing)]
     pub password_hash: String,
+
     pub role_id: i32,
 }
