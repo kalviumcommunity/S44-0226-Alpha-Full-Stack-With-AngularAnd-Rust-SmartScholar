@@ -44,3 +44,18 @@
 - Improved global styling and layout consistency
 - Addressed frontend code review feedback
 - Pushed frontend setup and layout UI branches
+
+## Day 5
+
+- Implemented backend user model for authentication
+- Created User struct with fields for id, full name, email, password hash, and role
+- Implemented secure password hashing using bcrypt
+- Added password utility module with hashing and verification functions
+- Improved password verification with proper error logging
+- Made bcrypt cost configurable through environment variables
+- Addressed backend code review feedback and security improvements
+- Created login and register UI pages in Angular
+- Implemented form validation for login and registration
+- Styled authentication pages to match the dark blue dashboard theme
+- Added navigation between login and register pages
+- Updated Angular routing structure to support authentication pages
