@@ -22,6 +22,7 @@
 }
 
 .menu a {
+  cursor: pointer;
   color: var(--text-muted);
   margin-left: 20px;
   text-decoration: none;
