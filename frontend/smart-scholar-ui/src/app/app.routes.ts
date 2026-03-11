@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
+
 import { Login } from './pages/login/login';
 import { Register } from './pages/register/register';
 import { MainLayout } from './layout/main-layout/main-layout';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
@@ -10,6 +12,9 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayout,
-    children: [{ path: '', redirectTo: 'dashboard', pathMatch: 'full' }],
+    canActivate: [authGuard],
+    children: [{ path: '', redirectTo: 'home', pathMatch: 'full' }],
   },
+
+  { path: '**', redirectTo: 'login' },
 ];

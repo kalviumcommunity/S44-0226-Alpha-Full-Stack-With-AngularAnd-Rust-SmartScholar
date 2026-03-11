@@ -59,3 +59,19 @@
 - Styled authentication pages to match the dark blue dashboard theme
 - Added navigation between login and register pages
 - Updated Angular routing structure to support authentication pages
+
+## Day 6
+
+- Implemented JWT token generation in Rust backend
+- Added `jsonwebtoken` and `chrono` dependencies
+- Created JWT utility module for authentication tokens
+- Designed structured JWT claims including user id, role id, issued time, and expiration
+- Configured JWT secret key using environment variables
+- Implemented token expiration logic for secure authentication sessions
+- Tested JWT generation and verified token output
+- Implemented Angular authentication guard to protect application routes
+- Created AuthService to manage authentication state and token storage
+- Integrated AuthGuard with Angular routing to prevent unauthorized access
+- Implemented login token storage using AuthService
+- Added logout functionality to remove authentication token
+- Ensured unauthorized users are redirected to login page
