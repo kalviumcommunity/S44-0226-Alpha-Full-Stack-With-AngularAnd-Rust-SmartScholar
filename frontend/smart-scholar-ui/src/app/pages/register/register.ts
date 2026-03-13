@@ -26,7 +26,7 @@ export class Register {
 
     // later you will call backend API here
 
-    alert('Account created successfully');
+    console.log('Account created successfully');
 
     this.router.navigate(['/login']);
   }

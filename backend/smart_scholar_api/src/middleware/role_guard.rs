@@ -1,19 +1,25 @@
 use axum::{
     http::StatusCode,
-    response::Response,
     middleware::Next,
+    response::Response,
 };
 use crate::utils::jwt::Claims;
 
-pub async fn role_guard(
-    claims: Claims,
-    required_role: i32,
-    next: Next,
-) -> Result<Response, StatusCode> {
+pub fn role_guard(
+    required_roles: Vec<i32>,
+) -> impl Fn(Claims, Next) -> std::pin::Pin<
+    Box<dyn std::future::Future<Output = Result<Response, StatusCode>> + Send>
+> + Clone {
 
-    if claims.role_id != required_role {
-        return Err(StatusCode::FORBIDDEN);
+    move |claims: Claims, next: Next| {
+        let roles = required_roles.clone();
+
+        Box::pin(async move {
+            if roles.contains(&claims.role_id) {
+                Ok(next.run().await)
+            } else {
+                Err(StatusCode::FORBIDDEN)
+            }
+        })
     }
-
-    Ok(next.run().await)
 }
