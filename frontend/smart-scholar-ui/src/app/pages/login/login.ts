@@ -8,11 +8,11 @@ import { Auth } from '../../services/auth';
   standalone: true,
   imports: [FormsModule, RouterModule],
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrls: ['./login.css'],
 })
 export class Login {
-  email = '';
-  password = '';
+  email: string = '';
+  password: string = '';
 
   constructor(
     private authService: Auth,
@@ -25,9 +25,12 @@ export class Login {
       return;
     }
 
-    // temporary token until backend login API
-    this.authService.login('demo-token');
+    // TEMPORARY until backend login API exists
+    const demoToken = 'demo-token';
 
+    this.authService.login(demoToken);
+
+    // redirect to dashboard
     this.router.navigate(['/']);
   }
 }

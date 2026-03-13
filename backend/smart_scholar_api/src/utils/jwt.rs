@@ -12,10 +12,6 @@ pub struct Claims {
     pub exp: usize,      // expiration
 }
 
-use jsonwebtoken::{encode, EncodingKey, Header};
-use chrono::{Utc, Duration};
-use std::env;
-
 pub fn generate_jwt(
     user_id: i32,
     email: String,
