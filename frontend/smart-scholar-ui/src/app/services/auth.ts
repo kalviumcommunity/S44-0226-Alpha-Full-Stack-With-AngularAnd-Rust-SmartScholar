@@ -21,4 +21,18 @@ export class Auth {
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
+
+  getRole(): number | null {
+    const token = this.getToken();
+
+    if (!token) return null;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+
+      return payload.role_id;
+    } catch {
+      return null;
+    }
+  }
 }
