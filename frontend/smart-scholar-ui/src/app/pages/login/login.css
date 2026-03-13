@@ -1,5 +1,5 @@
 .auth-wrapper {
-  height: 100vh;
+  min-height: 100vh;
 
   display: flex;
   justify-content: center;
@@ -8,36 +8,69 @@
   background: var(--bg-main);
 }
 
+/* card */
+
 .auth-card {
-  width: 450px;
+  width: 420px;
 
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
 
-  padding: 35px;
+  padding: 40px;
   border-radius: 10px;
 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.auth-card h2 {
+/* header */
+
+.auth-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+}
+
+.auth-header h1 {
+  margin: 0;
   color: var(--blue-light);
 }
 
-.form-row {
+.auth-header p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* title */
+
+.auth-card h2 {
+  margin-bottom: 25px;
+  color: var(--blue-light);
+}
+
+/* form */
+
+form {
+  width: 100%;
+}
+
+/* input groups */
+
+.form-group {
   display: flex;
   align-items: center;
   margin-bottom: 18px;
 }
 
-.form-row label {
+.form-group label {
   width: 120px;
   color: var(--text-muted);
 }
 
-.form-row input {
+.form-group input {
   flex: 1;
   padding: 10px;
 
@@ -47,6 +80,8 @@
 
   color: var(--text-main);
 }
+
+/* button */
 
 button {
   width: 100%;
@@ -66,10 +101,12 @@ button:hover {
   background: var(--blue-light);
 }
 
+/* bottom link */
+
 .switch {
-  text-align: center;
-  margin-top: 20px;
+  margin-top: 18px;
   color: var(--text-muted);
+  text-align: center;
 }
 
 .switch a {

@@ -1,18 +1,20 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [FormsModule, RouterModule],
   templateUrl: './register.html',
-  styleUrl: './register.css',
+  styleUrls: ['./register.css'],
 })
 export class Register {
-  fullName = '';
-  email = '';
-  password = '';
+  fullName: string = '';
+  email: string = '';
+  password: string = '';
+
+  constructor(private router: Router) {}
 
   register() {
     if (!this.fullName || !this.email || !this.password) {
@@ -21,5 +23,11 @@ export class Register {
     }
 
     console.log('Register:', this.fullName, this.email);
+
+    // later you will call backend API here
+
+    console.log('Account created successfully');
+
+    this.router.navigate(['/login']);
   }
 }
