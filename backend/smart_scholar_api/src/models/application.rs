@@ -1,22 +1,29 @@
 use serde::{Deserialize, Serialize};
 use chrono::{DateTime, Utc};
+use sqlx::FromRow;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, FromRow)]
 pub struct Application {
     pub id: i32,
     pub user_id: i32,
-    pub title: String,
-    pub description: String,
-    pub status: String,
-    pub created_at: DateTime<Utc>,
+    pub scholarship_name: String,
+    pub status: ApplicationStatus
+    pub submitted_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
 }
 
 #[derive(Debug, Deserialize)]
 pub struct CreateApplication {
-    pub title: String,
-    pub description: String,
+    pub scholarship_name: String,
 }
 
-pub const STATUS_PENDING: &str = "pending";
-pub const STATUS_APPROVED: &str = "approved";
-pub const STATUS_REJECTED: &str = "rejected";
+use sqlx::Type;
+
+#[derive(Debug, Serialize, Deserialize, Type)]
+#[sqlx(type_name = "application_status", rename_all = "UPPERCASE")]
+pub enum ApplicationStatus {
+    Pending,
+    Verified,
+    Approved,
+    Rejected,
+}
