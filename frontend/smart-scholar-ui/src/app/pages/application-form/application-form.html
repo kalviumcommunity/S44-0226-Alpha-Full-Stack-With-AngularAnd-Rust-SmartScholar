@@ -2,30 +2,50 @@
   <div class="form-card">
     <h2>Apply for Scholarship</h2>
 
-    <form (ngSubmit)="submit()">
+    <form #f="ngForm" (ngSubmit)="submit(f)">
       <!-- Scholarship Name -->
       <div class="form-group">
         <label>Scholarship Name</label>
-        <input type="text" [(ngModel)]="form.scholarship_name" name="scholarship_name" required />
+        <input
+          type="text"
+          [(ngModel)]="form.scholarship_name"
+          name="scholarship_name"
+          required
+          #name="ngModel"
+        />
       </div>
 
-      <!-- Category Dropdown -->
+      <!-- Category -->
       <div class="form-group">
         <label>Category</label>
-        <select [(ngModel)]="form.category" name="category">
+        <select [(ngModel)]="form.category" name="category" required #category="ngModel">
           <option value="">Select Category</option>
           <option value="merit">Merit</option>
           <option value="need">Need Based</option>
         </select>
       </div>
 
-      <!-- Date Picker -->
+      <!-- Date -->
       <div class="form-group">
         <label>Application Date</label>
-        <input type="date" [(ngModel)]="form.date" name="date" />
+        <input
+          type="date"
+          [(ngModel)]="form.date"
+          name="date"
+          required
+          #date="ngModel"
+          (click)="openDatePicker($event)"
+        />
       </div>
 
+      <!-- Submit Button -->
       <button type="submit">Submit Application</button>
     </form>
+  </div>
+  <!-- 🔥 GLOBAL ERROR BLOCK -->
+  <div class="error-box" *ngIf="f.invalid && f.submitted">
+    <p *ngIf="name.invalid">• Scholarship name is required</p>
+    <p *ngIf="category.invalid">• Category is required</p>
+    <p *ngIf="date.invalid">• Date is required</p>
   </div>
 </div>
