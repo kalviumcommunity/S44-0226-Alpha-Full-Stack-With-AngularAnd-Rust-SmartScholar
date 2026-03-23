@@ -8,6 +8,9 @@ use tracing::{error, info};
 use tracing_subscriber;
 mod models;
 mod utils;
+mod routes;
+use axum::routing::post;
+use crate::routes::application_routes::submit_application;
 
 #[derive(Clone)]
 struct AppState {
@@ -72,6 +75,7 @@ async fn main() {
     let app = Router::new()
         .route("/health", get(health_check))
         .route("/health/db", get(db_health))
+        .route("/applications", post(submit_application))
         .with_state(state);
 
     let listener = match TcpListener::bind(addr).await {

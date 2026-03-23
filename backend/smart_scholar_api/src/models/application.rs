@@ -7,7 +7,7 @@ pub struct Application {
     pub id: i32,
     pub user_id: i32,
     pub scholarship_name: String,
-    pub status: ApplicationStatus
+    pub status: ApplicationStatus,
     pub submitted_at: DateTime<Utc>,
     pub updated_at: DateTime<Utc>,
 }
