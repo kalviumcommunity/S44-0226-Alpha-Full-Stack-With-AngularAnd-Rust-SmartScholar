@@ -75,3 +75,17 @@
 - Implemented login token storage using AuthService
 - Added logout functionality to remove authentication token
 - Ensured unauthorized users are redirected to login page
+
+## Day 7
+
+- Implemented backend Role-Based Access Control (RBAC) middleware
+- Created `role_guard` middleware to validate user roles from JWT claims
+- Added support for checking multiple roles to allow flexible authorization rules
+- Defined centralized role constants for Student, Verifier, Approver, Finance, and Admin
+- Integrated middleware structure into backend authorization layer
+- Addressed automated code review feedback regarding Axum middleware compatibility
+- Updated Angular sidebar navigation to support proper route structure
+- Replaced placeholder routes with dedicated paths for Applications, Verification, Finance, and Settings modules
+- Improved overall project structure for future role-restricted API endpoints
+- Responded to automated code review comments and applied recommended fixes
+- Successfully prepared backend and frontend for role-based feature development

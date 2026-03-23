@@ -25,12 +25,14 @@ export class Login {
       return;
     }
 
-    // TEMPORARY until backend login API exists
     const demoToken = 'demo-token';
 
-    this.authService.login(demoToken);
+    // 👇 simulate roles (change for testing)
+    let role = 5;
 
-    // redirect to dashboard
+    this.authService.login(demoToken);
+    localStorage.setItem('role', role.toString());
+
     this.router.navigate(['/']);
   }
 }

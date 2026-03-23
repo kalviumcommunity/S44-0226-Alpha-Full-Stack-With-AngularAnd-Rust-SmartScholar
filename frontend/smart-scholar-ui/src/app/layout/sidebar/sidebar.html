@@ -1,7 +1,15 @@
 <div class="sidebar">
   <a routerLink="/dashboard">🏠 Dashboard</a>
-  <a *ngIf="auth.getRole() === 1" routerLink="/applications"> 📝 Applications </a>
-  <a *ngIf="auth.getRole() === 2" routerLink="/verification"> ✅ Verification </a>
-  <a *ngIf="auth.getRole() === 4" routerLink="/finance"> 💰 Finance </a>
+
+  <a *ngIf="auth.getRole() === 1 || auth.getRole() === 5" routerLink="/applications">
+    📝 Applications
+  </a>
+
+  <a *ngIf="auth.getRole() === 2 || auth.getRole() === 5" routerLink="/verification">
+    ✅ Verification
+  </a>
+
+  <a *ngIf="auth.getRole() === 4 || auth.getRole() === 5" routerLink="/finance"> 💰 Finance </a>
+
   <a routerLink="/settings">⚙ Settings</a>
 </div>
