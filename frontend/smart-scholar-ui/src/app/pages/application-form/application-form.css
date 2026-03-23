@@ -1,0 +1,50 @@
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.form-card {
+  width: 500px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.form-card h2 {
+  margin-bottom: 20px;
+  color: var(--blue-light);
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  width: 150px;
+  color: var(--text-muted);
+}
+
+.form-group input,
+.form-group select {
+  flex: 1;
+  padding: 10px;
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-main);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: var(--blue-main);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}

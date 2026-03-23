@@ -4,6 +4,7 @@ import { Login } from './pages/login/login';
 import { Register } from './pages/register/register';
 import { MainLayout } from './layout/main-layout/main-layout';
 import { authGuard } from './guards/auth-guard';
+import { ApplicationForm } from './pages/application-form/application-form';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
@@ -13,7 +14,10 @@ export const routes: Routes = [
     path: '',
     component: MainLayout,
     canActivate: [authGuard],
-    children: [{ path: '', redirectTo: 'home', pathMatch: 'full' }],
+    children: [
+      { path: 'applications', component: ApplicationForm },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+    ],
   },
 
   { path: '**', redirectTo: 'login' },

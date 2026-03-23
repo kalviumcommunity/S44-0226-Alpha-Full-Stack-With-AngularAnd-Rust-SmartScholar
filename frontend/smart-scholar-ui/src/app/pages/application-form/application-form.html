@@ -1,0 +1,31 @@
+<div class="form-wrapper">
+  <div class="form-card">
+    <h2>Apply for Scholarship</h2>
+
+    <form (ngSubmit)="submit()">
+      <!-- Scholarship Name -->
+      <div class="form-group">
+        <label>Scholarship Name</label>
+        <input type="text" [(ngModel)]="form.scholarship_name" name="scholarship_name" required />
+      </div>
+
+      <!-- Category Dropdown -->
+      <div class="form-group">
+        <label>Category</label>
+        <select [(ngModel)]="form.category" name="category">
+          <option value="">Select Category</option>
+          <option value="merit">Merit</option>
+          <option value="need">Need Based</option>
+        </select>
+      </div>
+
+      <!-- Date Picker -->
+      <div class="form-group">
+        <label>Application Date</label>
+        <input type="date" [(ngModel)]="form.date" name="date" />
+      </div>
+
+      <button type="submit">Submit Application</button>
+    </form>
+  </div>
+</div>
