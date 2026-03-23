@@ -3,7 +3,6 @@ use axum::{
     Json,
     http::StatusCode,
 };
-use sqlx::PgPool;
 use crate::AppState;
 use crate::models::application::{CreateApplication, ApplicationStatus};
 
@@ -27,7 +26,8 @@ pub async fn submit_application(
     match result {
         Ok(_) => Ok(StatusCode::CREATED),
         Err(err) => {
-            eprintln!("DB Error: {:?}", err);
+            use tracing::error;
+            error!("DB Error: {:?}", err);
             Err(StatusCode::INTERNAL_SERVER_ERROR)
         }
     }
