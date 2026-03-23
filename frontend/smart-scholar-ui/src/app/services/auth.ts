@@ -23,16 +23,17 @@ export class Auth {
   }
 
   getRole(): number | null {
-    const token = this.getToken();
+    return Number(localStorage.getItem('role'));
+    // const token = this.getToken();
 
-    if (!token) return null;
+    // if (!token) return null;
 
-    try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
+    // try {
+    //   const payload = JSON.parse(atob(token.split('.')[1]));
 
-      return payload.role_id;
-    } catch {
-      return null;
-    }
+    //   return payload.role_id;
+    // } catch {
+    //   return null;
+    // }
   }
 }
