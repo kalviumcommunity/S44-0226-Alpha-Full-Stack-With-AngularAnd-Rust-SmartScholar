@@ -1,15 +1,28 @@
 <div class="sidebar">
-  <a routerLink="/dashboard">🏠 Dashboard</a>
-
-  <a *ngIf="auth.getRole() === 1 || auth.getRole() === 5" routerLink="/applications">
+  <a
+    *ngIf="auth.getRole() === 1 || auth.getRole() === 5"
+    routerLink="/applications"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
     📝 Applications
   </a>
 
-  <a *ngIf="auth.getRole() === 2 || auth.getRole() === 5" routerLink="/verification">
+  <a
+    *ngIf="auth.getRole() === 2 || auth.getRole() === 5"
+    routerLink="/verification"
+    routerLinkActive="active"
+  >
     ✅ Verification
   </a>
 
-  <a *ngIf="auth.getRole() === 4 || auth.getRole() === 5" routerLink="/finance"> 💰 Finance </a>
+  <a
+    *ngIf="auth.getRole() === 4 || auth.getRole() === 5"
+    routerLink="/finance"
+    routerLinkActive="active"
+  >
+    💰 Finance
+  </a>
 
-  <a routerLink="/settings">⚙ Settings</a>
+  <a routerLink="/settings" routerLinkActive="active"> ⚙ Settings </a>
 </div>
